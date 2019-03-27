@@ -1,0 +1,207 @@
+快捷键\h
+安装mysql启动服务
+systemctl start  mysqld
+systemctl enable mysqld
+启动完成后查看服务状态
+systemctl status mysqld
+检查端口3306
+ss -luntp | grep 3306
+查看进程ID
+ps -C mysqld
+ps aux | grep -i mysqld
+查看数据库目录
+ls /var/lib/mysql
+查看配置文件
+ls /etc/my.cnf
+链接mysql
+mysql -h数据库服务器IP地址或主机名 -u用户名 -p密码
+安装后启动后初始密码在/var/log/mysqld.log
+过滤密码
+grep password /var/log/mysqld.log
+mysql -hlocalhost -uroot -p"l<5e#1%LvOJ="
+登陆mysql后是用了必须要修改初始密码设置密码必须要有大小写特殊符合和数值
+alter user root@"localhost" identified by "Tmoce%%%183"
+链接mysql
+mysql -h192.168.1.10  -uroot -pTmoce%%%183
+可以查看一下当前的库
+show databases;
+查看mysql服务器所以变量
+show variables;
+查看过滤mysql服务器密码策略
+show variables like "%password%";
++---------------------------------------+--------+
+| Variable_name                         | Value  |
++---------------------------------------+--------+
+| default_password_lifetime             | 0      |
+| disconnect_on_expired_password        | ON     |
+| log_builtin_as_identified_by_password | OFF    |
+| mysql_native_password_proxy_users     | OFF    |
+| old_passwords                         | 0      |
+| report_password                       |        |
+| sha256_password_proxy_users           | OFF    |
+| validate_password_check_user_name     | OFF    |
+| validate_password_dictionary_file     |        |
+| validate_password_length              | 8      |
+| validate_password_mixed_case_count    | 1      |
+| validate_password_number_count        | 1      |
+| validate_password_policy              | MEDIUM |
+| validate_password_special_char_count  | 1      |
++---------------------------------------+--------+
+修改策略{set修改}{global全局变量}
+set global validate_password_policy=0;
+修改密码长度
+set global validate_password_length=6;
+测试修改密码
+alter user  root@"localhost" identified by "123456"
+这样是测试临时有限从起无效方便我们验证
+mysql -u192.168.1.10 -uroot -p123456
+要想永久有效修改/etc/my.cnf
+systemctl stop mysqld
+vim /etc/my.cnf
+[mysqld]
+validate_password_policy=0
+validate_password_length=6 
+数据库管理命令：查看服务器已有的库 创建库 删除库 查看库的表
+查看服务器上已有库
+show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tm                 |
++--------------------+
+创建库
+create database 库名;
+切换库
+use 库名;
+显示当前所在的库
+select database();
++------------+
+| database() |
++------------+
+| tm         |
++------------+
+
+显示库里已有的表
+show tables;
++--------------+
+| Tables_in_tm |
++--------------+
+| st           |
++--------------+
+
+删除库
+deop database 库名;
+常用的SQL操作指令  别人问你你会什么SQL语言
+DDL   DML   DCL  DTL
+DDL数据定义语言（{create:建库建表}{alter:修改用户}{drop:删库删表}）
+DML数据操作语言（{lnsert:插入记录}{update:修改记录}{delete:删除记录}）
+DCL数据控制语言（{grant:授权}{revoke:删除授权}）
+DTL数据事物语言（{commit:提交}{rollback:回滚}{savepoint:保存节点}）
+创建表
+create table 库名.表名   姓名       年龄
+create table tm.st(name char(10),age int);
+进入库
+use tm
+显示所在的库
+select database();
++------------+
+| database() |
++------------+
+| tm         |
++------------+
+显示所以的表
+show tables;
++--------------+
+| Tables_in_tm |
++--------------+
+| st           |
++--------------+
+查看表结果
+desc 库名.表名;
+desc tm.st;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(10) | YES  |     | NULL    |       |
+| age   | int(11)  | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+
+删除表结构
+drop table 库名.表；
+drop table tm.st;
+插入表记录
+insert into 库名.表 values("tm",21),("bob",23);
+mysql> insert into tm.st values("tm",21),("bob",23);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+查看表记录
+select * from 表名;
+mysql> select * from tm.st;
++------+------+
+| name | age  |
++------+------+
+| tm   |   21 |
+| bob  |   23 |
++------+------+
+配置查查询表记录
+mysql> select name from tm.st;
++------+
+| name |
++------+
+| tm   |
+| bob  |
++------+
+
+修改表记录
+{update {tm.st:库.表} {set:修改} {age=19:修改} {where:条件修改} name="tm";}
+mysql> update tm.st set age=19 where name="tm";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+查看
+mysql> select * from tm.st;
++------+------+
+| name | age  |
++------+------+
+| tm   |   19 |
+| bob  |   23 |
++------+------+
+全部都修改
+mysql> update tm.st set age=19 ;
+mysql> select * from tm.st;
++------+------+
+| name | age  |
++------+------+
+| tm   |   19 |
+| bob  |   19 |
++------+------+
+条件删除表记录
+delete from 库.表 where name="tmo"   条件删除
+delete from tm.st where name="tm"；
+mysql> select name from tm.st;
++------+
+| name |
++------+
+| bob  |
++------+
+删除表
+delete from tm.st;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
