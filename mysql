@@ -257,4 +257,28 @@ select * from 信;
 +--------+----------+
 
 
+授权用户
+grant all on 库.表  用户名@"主机" identified by "密码";
+grant all on t.*  admin@"*" identified by "123456";
+
+显示当前登录的用户
+select user();
+
+权限
+show grants;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
