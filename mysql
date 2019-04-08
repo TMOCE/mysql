@@ -19,7 +19,7 @@ mysql -h数据库服务器IP地址或主机名 -u用户名 -p密码
 过滤密码
 grep password /var/log/mysqld.log
 mysql -hlocalhost -uroot -p"l<5e#1%LvOJ="
-登陆mysql后是用了必须要修改初始密码设置密码必须要有大小写特殊符合和数值
+登陆mysql后是用了必须要修改初始密码设置密码必须要有大小写特殊符合和数值用户
 alter user root@"localhost" identified by "Tmoce%%%183"
 链接mysql
 mysql -h192.168.1.10  -uroot -pTmoce%%%183
@@ -105,7 +105,7 @@ DTL数据事物语言（{commit:提交}{rollback:回滚}{savepoint:保存节点}
 create table 库名.表名   姓名       年龄
 create table tm.st(name char(10),age int);mysqldump -uroot -p tyun > tyum.sql
 进入库
-use tm
+use tm用户
 显示所在的库
 select database();
 +------------+
@@ -137,7 +137,7 @@ drop table tm.st;
 insert into 库名.表 values("tm",21),("bob",23);
 mysql> insert into tm.st values("tm",21),("bob",23);
 Query OK, 2 rows affected (0.00 sec)
-Records: 2  Duplicates: 0  Warnings: 0
+Records: 2  Duplicates: 0  Warnings: 0用户
 查看表记录
 select * from 表名;
 mysql> select * from tm.st;
@@ -283,7 +283,8 @@ select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
                      表
 mysqldump -uroot -p tyun > tyum.sql
 
-
+倒入
+source /var/lib/mysql-files/t.sql;
 
 
 
