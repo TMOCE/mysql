@@ -35,7 +35,7 @@ show variables like "%password%";
 | default_password_lifetime             | 0      |
 | disconnect_on_expired_password        | ON     |
 | log_builtin_as_identified_by_password | OFF    |
-| mysql_native_password_proxy_users     | OFF    |
+| mysql_native_password_proxy_users     | OFF    |mysqldump -uroot -p tyun > tyum.sql
 | old_passwords                         | 0      |
 | report_password                       |        |
 | sha256_password_proxy_users           | OFF    |
@@ -67,7 +67,7 @@ show databases;
 +--------------------+
 | Database           |
 +--------------------+
-| information_schema |
+| information_schema |mysqldump -uroot -p tyun > tyum.sql
 | mysql              |
 | performance_schema |
 | sys                |
@@ -103,7 +103,7 @@ DCL数据控制语言（{grant:授权}{revoke:删除授权}）
 DTL数据事物语言（{commit:提交}{rollback:回滚}{savepoint:保存节点}）
 创建表
 create table 库名.表名   姓名       年龄
-create table tm.st(name char(10),age int);
+create table tm.st(name char(10),age int);mysqldump -uroot -p tyun > tyum.sql
 进入库
 use tm
 显示所在的库
@@ -143,7 +143,7 @@ select * from 表名;
 mysql> select * from tm.st;
 +------+------+
 | name | age  |
-+------+------+
++------+------+mysqldump -uroot -p tyun > tyum.sql
 | tm   |   21 |
 | bob  |   23 |
 +------+------+
@@ -185,7 +185,7 @@ mysql> select name from tm.st;
 +------+
 | name |
 +------+
-| bob  |
+| bob  |mysqldump -uroot -p tyun > tyum.sql
 +------+
 删除表
 delete from tm.st;
@@ -235,7 +235,7 @@ float(7,2) 这个是(12345)(67)
 create database 信
 use 信;
 create table 信(
-age tinyint unsigned,   unsigned是符合范围
+age tinyint unsigned,   unsigned是符合范围mysqldump -uroot -p tyun > tyum.sql
 pay float(7,2)
 );
 
@@ -279,10 +279,9 @@ select * from  库。表   into outfile
 select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
 
 
-
-
-
-
+导出
+                     表
+mysqldump -uroot -p tyun > tyum.sql
 
 
 
