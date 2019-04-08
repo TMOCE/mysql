@@ -197,7 +197,7 @@ show databases;
 表面和字段都也是设置中文
 显示表的创建表的信
 show create table 表;
-create table 信息( 姓名 char(3), 年龄 int)
+create table 信息( 姓名 char(3), 年龄 int)态
     -> DEFAULT CHARSET=utf8;
  desc 信息;
 +--------+---------+------+-----+---------+-------+
@@ -268,8 +268,13 @@ select user();
 show grants;
 
 
+数据库倒入
+show variables   like    "secure_file_priv";   倒入的目录
 
 
+数据库导
+select * from  库。表   into outfile 
+"/var/lib/mysql-files/t.txt";
 
 
 
