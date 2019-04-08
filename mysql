@@ -75,7 +75,7 @@ show databases;
 +--------------------+
 创建库
 create database 库名;
-切换库
+切换库select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
 use 库名;
 显示当前所在的库
 select database();
@@ -111,7 +111,7 @@ select database();
 +------------+
 | database() |
 +------------+
-| tm         |
+| tm         |select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
 +------------+
 显示所以的表
 show tables;
@@ -161,7 +161,7 @@ mysql> select name from tm.st;
 mysql> update tm.st set age=19 where name="tm";
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-查看
+查看select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
 mysql> select * from tm.st;
 +------+------+
 | name | age  |
@@ -276,6 +276,7 @@ show variables   like    "secure_file_priv";   倒入的目录
 select * from  库。表   into outfile 
 "/var/lib/mysql-files/t.txt";
 
+select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
 
 
 
