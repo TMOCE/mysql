@@ -1,4 +1,4 @@
-快捷键\h
+快捷键
 安装mysql启动服务
 systemctl start  mysqld
 systemctl enable mysqld
@@ -67,7 +67,7 @@ show databases;
 +--------------------+
 | Database           |
 +--------------------+
-| information_schema |mysqldump -uroot -p tyun > tyum.sql
+| information_schema |
 | mysql              |
 | performance_schema |
 | sys                |
@@ -75,7 +75,7 @@ show databases;
 +--------------------+
 创建库
 create database 库名;
-切换库select * from tyun.用户 into  outfile  '/var/lib/mysql-files/1.txt';
+切换库select * from 
 use 库名;
 显示当前所在的库
 select database();
