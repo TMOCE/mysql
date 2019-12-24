@@ -94,7 +94,7 @@ show tables;
 +--------------+
 
 删除库
-deop database 库名;
+drop database 库名;
 常用的SQL操作指令  别人问你你会什么SQL语言
 DDL   DML   DCL  DTL
 DDL数据定义语言（{create:建库建表}{alter:修改用户}{drop:删库删表}）
